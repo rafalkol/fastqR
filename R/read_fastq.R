@@ -1,3 +1,14 @@
+#' Read fastq function
+#'
+#' @param file an uncompressed file (.fq extension) in fastq format
+#'
+#' @return A tibble with ID, Bases, Qualities and GC columns
+#' @export
+#'
+#' @importFrom magrittr %>%
+#'
+#' @examples
+#' read_fastq(system.file("good.fq", package = "fastqR"))
 read_fastq <- function(file) {
   assertthat::assert_that(assertthat::is.readable(file))
   assertthat::assert_that(assertthat::has_extension(file,"fq"))
@@ -31,6 +42,16 @@ read_fastq <- function(file) {
 
 }
 
+
+#' Calculate DNA GC content
+#'
+#' @param seq a character vector of DNA sequences
+#'
+#' @return a vector of percentage GC values can be upper or lower case. Any non GATC characters will be treated as non-GC
+#' @export
+#'
+#' @examples
+#' gc_content(c("GGATCG","gtattagc"))
 gc_content <- function(seq) {
 
   assertthat::assert_that(is.character(seq))

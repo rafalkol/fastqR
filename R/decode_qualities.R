@@ -1,3 +1,15 @@
+#' Decode FastQ quality strings into Phred scores
+#'
+#' @param qualities a string scalar containing FastQ encoded quality scores
+#' @param offset the ASCII offset (33 or 64) of the encoded phred scores
+#'
+#' @return a vector of Phred scores
+#' @export
+#'
+#' @examples
+#' decode_qualities("???#;ABAAAH")
+#'
+#' decode_qualities("WZZZVX[]", offset=64)
 decode_qualities <- function(qualities, offset=33) {
 
   assertthat::assert_that(assertthat::is.scalar(qualities))
